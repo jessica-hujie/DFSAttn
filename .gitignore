@@ -1,0 +1,61 @@
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Build products
+build/
+dist/
+*.so
+*.o
+*.a
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Generated videos, logs, and experiment outputs
+output/
+outputs/
+log_files/
+logs/
+results/
+eval/vbench/sampled_prompts_*.json
+*.log
+*.jsonl
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*_flash.sh
+
+# Local checkpoints and large assets
+checkpoints/
+pretrained_models/
+weights/
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+
+# Local scratch directories
+tmp/
+temp/
+未命名/
+dfsattn/qkv_block_variance.csv
+
+# Vendored dependency checkouts should be installed separately.
+Block-Sparse-Attention/
+dfsattn/kernels/3rdparty/
