@@ -30,30 +30,43 @@ The public release is centered on `dfsattn/`. Other local research baselines suc
 The code targets Linux CUDA environments. The reference environment uses Python
 3.10, PyTorch 2.6, CUDA 12.x, Diffusers, FlashAttention, and
 `block_sparse_attn`. Install the PyTorch/CUDA pair that matches your machine
-first, then install the Python dependencies:
+first, then install the CUDA extension build tools and Python dependencies:
 
 ```bash
 conda create -n dfsattn python=3.10 -y
 conda activate dfsattn
 # Example only. Pick the PyTorch command that matches your CUDA runtime.
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
-pip install -r requirements.txt
+pip install -U setuptools wheel cmake ninja psutil packaging
 ```
 
 DFSAttn directly uses the block-sparse attention operator from
 [MIT HAN Lab Block-Sparse-Attention](https://github.com/mit-han-lab/Block-Sparse-Attention).
-Install it from PyPI or follow the upstream repository for source builds and
-CUDA compatibility notes:
-
-```bash
-pip install block_sparse_attn
-```
+Build it from the upstream repository after PyTorch is installed. `CUDA_HOME`
+must point to the same CUDA toolkit version used by PyTorch; for example,
+PyTorch `cu124` should use CUDA 12.4 `nvcc`.
 
 ```bash
 git clone https://github.com/mit-han-lab/Block-Sparse-Attention.git
 cd Block-Sparse-Attention
-pip install .
+export CUDA_HOME=/usr/local/cuda-12.4
+export PATH="$CUDA_HOME/bin:$PATH"
+export LD_LIBRARY_PATH="$CUDA_HOME/lib64:${LD_LIBRARY_PATH:-}"
+# A100: 80, A10/RTX 30xx: 86, H100/H200: 90. See the upstream repo for more architectures.
+export BLOCK_SPARSE_ATTN_CUDA_ARCHS=80
+pip install --no-build-isolation .
+cd ..
 ```
+
+Then install the remaining DFSAttn dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+The versions in `requirements.txt` are pinned where Wan 2.1 depends on a
+specific Diffusers/Transformers API. Upgrade those packages only after checking
+the attention processor interfaces.
 
 ## Model Checkpoints
 
@@ -147,8 +160,21 @@ same defaults map to internal refresh steps `24`, `48`, and `72`; the scheduled
 from [Sparse-VideoGen](https://github.com/svg-project/Sparse-VideoGen). DFSAttn
 falls back to PyTorch implementations if these kernels are not built.
 
-Prepare the kernel sources and third-party headers following the upstream
-Sparse-VideoGen kernel layout (`svg/kernels/`). The expected local layout is:
+Prepare the kernel sources and third-party headers by following the upstream
+Sparse-VideoGen customized-kernel setup first. This initializes the required
+submodules and verifies that the upstream kernels build in your environment:
+
+```bash
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/svg-project/Sparse-VideoGen.git
+cd Sparse-VideoGen
+pip install -U setuptools
+git submodule update --init --recursive
+cd svg/kernels
+pip install -U cmake
+bash setup.sh
+```
+
+DFSAttn expects the initialized Sparse-VideoGen third-party layout at:
 
 ```text
 dfsattn/kernels/3rdparty/
@@ -157,18 +183,18 @@ dfsattn/kernels/3rdparty/
 └── pybind/
 ```
 
-For a source-based setup, clone Sparse-VideoGen and use its `svg/kernels`
-directory as the upstream reference:
-
 ```bash
-git clone https://github.com/svg-project/Sparse-VideoGen.git
+cd /path/to/DFSAttn
+rm -rf dfsattn/kernels/3rdparty
+cp -a /path/to/Sparse-VideoGen/svg/kernels/3rdparty dfsattn/kernels/3rdparty
 ```
 
 Then build the DFSAttn extension:
 
 ```bash
 cd dfsattn/kernels
-./setup.sh
+bash setup.sh
+python -c 'from dfsattn.kernels import ENABLE_FAST_KERNEL; print(ENABLE_FAST_KERNEL)'
 ```
 
 ## Notes For Release
