@@ -20,7 +20,6 @@ The public release is centered on `dfsattn/`. Other local research baselines suc
 ├── wan21_t2v_inference.py       # Wan 2.1 text-to-video inference
 ├── *_720p_dfs.sh                # Batch DFSAttn launch examples
 ├── dataloader.py                # Prompt loading helpers
-├── eval/vbench/                 # Optional VBench prompt utilities
 ├── requirements.txt             # Reference Python dependencies
 └── examples/prompts.txt         # Minimal prompt file for smoke tests
 ```
@@ -200,7 +199,7 @@ python -c 'from dfsattn.kernels import ENABLE_FAST_KERNEL; print(ENABLE_FAST_KER
 ## Notes For Release
 
 - Generated videos, logs, caches, local checkpoints, and build products are ignored by `.gitignore`.
-- The vendored `Block-Sparse-Attention/` checkout is not needed in the public repository if `block_sparse_attn` is installed as a dependency.
+- The vendored `Block-Sparse-Attention/` checkout is not needed in the public repository; install `block_sparse_attn` from the upstream source repository instead.
 - Add a top-level `LICENSE` before publishing if you want others to have explicit reuse rights.
 
 ## Acknowledgements

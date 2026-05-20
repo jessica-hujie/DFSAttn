@@ -31,7 +31,6 @@ outputs/
 log_files/
 logs/
 results/
-eval/vbench/sampled_prompts_*.json
 *.log
 *.jsonl
 *.mp4
