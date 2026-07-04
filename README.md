@@ -223,26 +223,27 @@ DFSAttn runs full attention for the first `SKIP_STEPS` diffusion steps. After
 that, it starts from `SPARSITY` and refreshes the sparse mask every
 `CACHE_INTERVAL` diffusion steps, decreasing sparsity by `SPARSITY_DCRT` each
 interval. If a scheduled refresh would make sparsity non-positive, DFSAttn skips
-that refresh and keeps using the previous cached mask and sparsity. The default
-`SKIP_STEPS=12`, `CACHE_INTERVAL=12`, `SPARSITY_DCRT=0.1` gives HyVideo refresh
-steps `12`, `24`, and `36`; the next scheduled step `48` would be `0.0`, so it
-reuses the `36` mask. Wan internally visits each diffusion step twice, so the
-same defaults map to internal refresh steps `24`, `48`, and `72`; the scheduled
-`96` refresh is skipped.
+that refresh and keeps using the previous cached mask and sparsity.
 
 ## Examples
 
-| Example | Full Attention | DFSAttn |
-|---|---|---|
-| 1 | [dense_1.mp4](assets/examples/dense_1.mp4) | [dfs_1.mp4](assets/examples/dfs_1.mp4) |
-| 2 | [dense_2.mp4](assets/examples/dense_2.mp4) | [dfs_2.mp4](assets/examples/dfs_2.mp4) |
-
-## Troubleshooting
-
-- Make sure `CUDA_HOME` points to the CUDA toolkit matching your PyTorch CUDA version.
-- If `block_sparse_attn` fails to compile, set `BLOCK_SPARSE_ATTN_CUDA_ARCHS` according to your GPU architecture.
-- If optional fast kernels are unavailable, DFSAttn falls back to PyTorch implementations.
-- If Wan 2.1 fails after upgrading Diffusers or Transformers, use the versions pinned in `requirements.txt`.
+<table>
+  <tr>
+    <th>Example</th>
+    <th>Full Attention</th>
+    <th>DFSAttn</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><video src="assets/examples/dense_1.mp4" controls muted loop width="320"></video></td>
+    <td><video src="assets/examples/dfs_1.mp4" controls muted loop width="320"></video></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><video src="assets/examples/dense_2.mp4" controls muted loop width="320"></video></td>
+    <td><video src="assets/examples/dfs_2.mp4" controls muted loop width="320"></video></td>
+  </tr>
+</table>
 
 ## Citation
 
