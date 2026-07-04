@@ -227,23 +227,10 @@ that refresh and keeps using the previous cached mask and sparsity.
 
 ## Examples
 
-<table>
-  <tr>
-    <th>Example</th>
-    <th>Full Attention</th>
-    <th>DFSAttn</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td><video src="assets/examples/dense_1.mp4" controls muted loop width="320"></video></td>
-    <td><video src="assets/examples/dfs_1.mp4" controls muted loop width="320"></video></td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td><video src="assets/examples/dense_2.mp4" controls muted loop width="320"></video></td>
-    <td><video src="assets/examples/dfs_2.mp4" controls muted loop width="320"></video></td>
-  </tr>
-</table>
+| Example | Full Attention | DFSAttn |
+|---|---|---|
+| 1 | [![Full attention example 1](assets/examples/gifs/dense_1.gif)](assets/examples/dense_1.mp4) | [![DFSAttn example 1](assets/examples/gifs/dfs_1.gif)](assets/examples/dfs_1.mp4) |
+| 2 | [![Full attention example 2](assets/examples/gifs/dense_2.gif)](assets/examples/dense_2.mp4) | [![DFSAttn example 2](assets/examples/gifs/dfs_2.gif)](assets/examples/dfs_2.mp4) |
 
 ## Citation
 
