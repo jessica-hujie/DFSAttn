@@ -230,31 +230,31 @@ that refresh and keeps using the previous cached mask and sparsity.
 <table>
   <tr>
     <td width="33%" valign="top">
-      <strong>Prompt:</strong> On the beach, the waves gently lap against the shore. Some people are sunbathing, surfers are sliding on the waves, and children are building sandcastles. The entire video presents a joyful atmosphere.
+      <small><strong>Prompt:</strong> On the beach, the waves gently lap against the shore. Some people are sunbathing, surfers are sliding on the waves, and children are building sandcastles. The entire video presents a joyful atmosphere.</small>
       <br><br>
       <strong>Full Attention</strong><br>
-      <a href="assets/examples/dense_1.mp4"><img src="assets/examples/gifs/dense_1.gif" alt="Full attention beach example" width="320"></a>
+      <a href="assets/examples/dense_1.mp4"><img src="assets/examples/gifs/dense_1.gif" alt="Full attention beach example" width="256"></a>
       <br><br>
       <strong>DFSAttn</strong><br>
-      <a href="assets/examples/dfs_1.mp4"><img src="assets/examples/gifs/dfs_1.gif" alt="DFSAttn beach example" width="320"></a>
+      <a href="assets/examples/dfs_1.mp4"><img src="assets/examples/gifs/dfs_1.gif" alt="DFSAttn beach example" width="256"></a>
     </td>
     <td width="33%" valign="top">
-      <strong>Prompt:</strong> A female student in a gray coat slowly stands up in the rain. The entire video presents a melancholic atmosphere.
+      <small><strong>Prompt:</strong> A female student in a gray coat slowly stands up in the rain. The entire video presents a melancholic atmosphere.</small>
       <br><br>
       <strong>Full Attention</strong><br>
-      <a href="assets/examples/dense_2.mp4"><img src="assets/examples/gifs/dense_2.gif" alt="Full attention rain example" width="320"></a>
+      <a href="assets/examples/dense_2.mp4"><img src="assets/examples/gifs/dense_2.gif" alt="Full attention rain example" width="256"></a>
       <br><br>
       <strong>DFSAttn</strong><br>
-      <a href="assets/examples/dfs_2.mp4"><img src="assets/examples/gifs/dfs_2.gif" alt="DFSAttn rain example" width="320"></a>
+      <a href="assets/examples/dfs_2.mp4"><img src="assets/examples/gifs/dfs_2.gif" alt="DFSAttn rain example" width="256"></a>
     </td>
     <td width="33%" valign="top">
-      <strong>Prompt:</strong> Under the azure sky, a polar bear stands in the snow, turning its head to look at its cub behind him.
+      <small><strong>Prompt:</strong> Under the azure sky, a polar bear stands in the snow, turning its head to look at its cub behind him.</small>
       <br><br>
       <strong>Full Attention</strong><br>
-      <a href="assets/examples/dense_3.mp4"><img src="assets/examples/gifs/dense_3.gif" alt="Full attention polar bear example" width="320"></a>
+      <a href="assets/examples/dense_3.mp4"><img src="assets/examples/gifs/dense_3.gif" alt="Full attention polar bear example" width="256"></a>
       <br><br>
       <strong>DFSAttn</strong><br>
-      <a href="assets/examples/dfs_3.mp4"><img src="assets/examples/gifs/dfs_3.gif" alt="DFSAttn polar bear example" width="320"></a>
+      <a href="assets/examples/dfs_3.mp4"><img src="assets/examples/gifs/dfs_3.gif" alt="DFSAttn polar bear example" width="256"></a>
     </td>
   </tr>
 </table>
